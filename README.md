@@ -235,6 +235,7 @@ The plugin works out of the box with no configuration required, with the followi
     process_name = 'claude',     -- process name(s) to search for when target_mode = 'current_window' or 'find_process'
     switch_to_target = true,     -- whether to switch to the target after sending
     find_node_process = false,   -- whether to look for node processes with matching name
+    clipboard_only = false,      -- skip tmux send entirely and only copy to clipboard
   },
   interactive = {
     use_telescope = false,       -- whether to use telescope for prompt input (if available)
@@ -254,6 +255,7 @@ The plugin works out of the box with no configuration required, with the followi
 - `find_node_process`: Some agents like Claude Code run inside a node.js process so enabling this will look for the
   `'process_name'` in the command of node processes (default: `false`)
 - `switch_to_target`: Whether to switch to the target after sending context (default: `true`)
+- `clipboard_only`: Skip the tmux paste entirely and only copy context to the clipboard (default: `false`)
 
 ### Interactive prompt options
 

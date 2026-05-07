@@ -9,6 +9,7 @@ local config = {
     process_name = 'claude',     -- process name(s) to search for when target_mode = 'current_window' or 'find_process'
     switch_to_target = true,     -- whether to switch to the target after sending
     find_node_process = false,   -- whether to look for node processes with matching name
+    clipboard_only = false,      -- skip tmux send entirely and only copy to clipboard
   },
   interactive = {
     use_telescope = false, -- whether to use telescope for prompt input (if available)
@@ -561,6 +562,11 @@ local function send_to_tmux_target(message)
 
   -- Always copy to clipboard (helpful in case claude code vim mode is not in insert mode)
   vim.fn.setreg('+', message)
+
+  if config.tmux.clipboard_only then
+    print("copied to clipboard")
+    return
+  end
 
   -- Check if we're in a tmux session
   vim.fn.system('tmux display-message -p "#{session_name}" 2>/dev/null')
