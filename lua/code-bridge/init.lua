@@ -104,7 +104,7 @@ local function build_context(opts)
     return table.concat(buffers, ' ')
   else
     -- Single file context
-    local relative_file = vim.fn.fnamemodify(vim.fn.expand('%:p'), ':~:.')
+    local relative_file = vim.fn.expand('%:p')
     if relative_file ~= '' then
       if opts.range == 2 then
         -- Visual mode - use the range from command
